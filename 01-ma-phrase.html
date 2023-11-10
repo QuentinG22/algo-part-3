@@ -66,7 +66,7 @@
             // Récupérer la phrase saisi
             const maPhrase = document.getElementById("sentence").value;
             // Mon tableau avec les paramètres pour l'analyse
-            let myTab = [maPhrase.length, maPhrase[4], maPhrase.slice(0, 3), maPhrase.slice(-3)]
+            let myTab = [maPhrase.length, maPhrase[4], maPhrase.replaceAll(" ", "").slice(0, 3), maPhrase.replaceAll(" ", "").slice(-3)]
             // Nombre de caractère de la phrase
             let message = "Voici le résultat de l'analyse: \n"
             // 5ème caractère de la phrase
@@ -77,7 +77,13 @@
             let message3 = "Les 3 premiers caractère: " + myTab[2] + "\n"
             // Les 3 dernier carractères de la phrase
             let message4 = "Les 3 derniers caractère: " + myTab[3]
-            alert(message + message1 + message2 + message3 + message4)
+            // Si la phrase esr inférieur à 5 caractères
+            if (maPhrase.length < 5) {
+                alert("Veuillez saisir plus de caractère dans votre phrase.")
+            }
+            else {
+                alert(message + message1 + message2 + message3 + message4)
+            }
         }
 
     </script>
