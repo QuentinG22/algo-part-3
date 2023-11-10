@@ -58,31 +58,39 @@
 
     <script type="text/javascript">
 
-        /* La function sert à recupérer un phrase saisi par l'utilisateur,
+        /* La function sert à recupérer une phrase saisi par l'utilisateur,
          * pour ensuite l'analyser avec les paramètres donnée.
          */
 
         function analyse() {
             // Récupérer la phrase saisi
-            const maPhrase = document.getElementById("sentence").value;
-            // Mon tableau avec les paramètres pour l'analyse
-            let myTab = [maPhrase.length, maPhrase[4], maPhrase.replaceAll(" ", "").slice(0, 3), maPhrase.replaceAll(" ", "").slice(-3)]
-            // Nombre de caractère de la phrase
-            let message = "Voici le résultat de l'analyse: \n"
-            // 5ème caractère de la phrase
-            let message1 = "Nombre de caractère: " + myTab[0] + "\n"
-            // Les 3 premiers caractères de la phrase
-            let message2 = "Le 5ème caractère: " + myTab[1] + "\n"
-            // Les 3 premiers caractères de la phrase
-            let message3 = "Les 3 premiers caractère: " + myTab[2] + "\n"
-            // Les 3 dernier carractères de la phrase
-            let message4 = "Les 3 derniers caractère: " + myTab[3]
-            // Si la phrase esr inférieur à 5 caractères
+            const maPhrase = document.getElementById("sentence").value
+            // Création du tableau
+            let myTab;
+            // Si la phrase est inférieur à 5 caractères en enlevant le espace si il y en a dans le mots
             if (maPhrase.length < 5) {
-                alert("Veuillez saisir plus de caractère dans votre phrase.")
+                myTab = [maPhrase.length]
+                alert("Nombre de caractère: " + myTab[0])
+                console.log(myTab)
+                return (myTab)
             }
+
+            // Si la phrase est supérieur à 5 caractères en enlevant le espace si il y en a dans le mots
             else {
+                myTab = [maPhrase.length, maPhrase[4], maPhrase.replaceAll(" ", "").slice(0, 3), maPhrase.replaceAll(" ", "").slice(-3)]
+                // Nombre de caractère de la phrase
+                let message = "Voici le résultat de l'analyse: \n"
+                // 5ème caractère de la phrase
+                let message1 = "Nombre de caractère: " + myTab[0] + "\n"
+                // Les 3 premiers caractères de la phrase
+                let message2 = "Le 5ème caractère: " + myTab[1] + "\n"
+                // Les 3 premiers caractères de la phrase
+                let message3 = "Les 3 premiers caractère: " + myTab[2] + "\n"
+                // Les 3 dernier caractères de la phrase en enlevant le espace si il y en a dans le mots
+                let message4 = "Les 3 derniers caractère: " + myTab[3]
                 alert(message + message1 + message2 + message3 + message4)
+                console.log(myTab)
+                return (myTab)
             }
         }
 
