@@ -57,19 +57,24 @@
     </div>
 
     <script type="text/javascript">
+        /*
+         * La fonction me permet de compte le nombre de mots dans une phrase saisis,
+         * mais aussi d'annuler la ponctuation et apostrophe comme mots
+         */
         function countWords() {
             // Récupérer la phrase saisie par l'utilisateur
             const maPhrase = document.getElementById("sentence").value;
+            // Compteur de mots
             let nombreDeMots = 0;
-            // Mettre à true pour que le début de la phrase soit pris en compte
+            // Il me permet que le début de la phrase soit pris en compte
             let separateurPrecedent = true
-            let ponctuation = ', ; : ? !'
-
+            // il me permet de remplacer la ponctuation part null pour qu'il ne le compte pas comme un mots
+            let phraseSansPonctuation = maPhrase.replace(/[;:?! ,]/g, "");
             // Parcourir chaque caractère de la phrase
-            for (let i = 0; i < maPhrase.length; i++) {
+            for (let i = 0; i < phraseSansPonctuation.length; i++) {
                 /*
                  *Si le caractère actuel n'est pas un espace, et le caractère précédent était un espace,
-                 *incrémenter le compteur de mots
+                 *incrémenter le compteur de mots part 1
                  */
                 if ((maPhrase[i] !== ' ' && maPhrase[i] !== "'") && separateurPrecedent) {
                     nombreDeMots++;
@@ -85,3 +90,36 @@
 </body>
 
 </html>
+
+<!-- <script type="text/javascript">
+    function countWords() {
+        // Récupérer la phrase saisie par l'utilisateur
+        const maPhrase = document.getElementById("sentence").value.trim(); // Utiliser trim() pour supprimer les espaces au début et à la fin
+
+        if (maPhrase === "") {
+            console.log("Veuillez saisir une phrase.");
+            return;
+        }
+
+        let nombreDeMots = 0;
+
+        // Utiliser une expression régulière pour filtrer la ponctuation et les espaces
+        let phraseSansPonctuation = maPhrase.replace(/[;:?! ,]/g, "");
+
+        // Parcourir chaque caractère de la phrase sans ponctuation
+        for (let i = 0; i < phraseSansPonctuation.length; i++) {
+            /*
+             * Si le caractère actuel n'est pas un espace,
+             * et le caractère précédent était un espace ou un caractère de ponctuation,
+             * incrémenter le compteur de mots
+             */
+            if (phraseSansPonctuation[i] !== ' ' && phraseSansPonctuation[i] !== "'" && i === 0) {
+                nombreDeMots++;
+            } else if (phraseSansPonctuation[i] !== ' ' && phraseSansPonctuation[i] !== "'" && (phraseSansPonctuation[i - 1] === ' ' || phraseSansPonctuation[i - 1] === "'")) {
+                nombreDeMots++;
+            }
+        }
+
+        console.log("Nombre de mots : " + nombreDeMots);
+    }
+</script> -->
