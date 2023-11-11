@@ -21,7 +21,7 @@
                 Complétez la fonction 'countWords' qui affichera le nombre de mots de la la phrase saisie.
             </p>
             <p class="text-secondary">
-                Pour simplifier les choses, on considère, dans un premier temps, que le séparateur de mots est 
+                Pour simplifier les choses, on considère, dans un premier temps, que le séparateur de mots est
                 uniquement le caractère d'espacement.
             </p>
             <p class="text-secondary">Si tout se passe normalement :</p>
@@ -31,16 +31,19 @@
                 Cependant, toute autre solution sera la bienvenue.</p>
             <p></p>
             <p><strong>Banco !</strong> : </p>
-            <p class="text-success">countWords ("&nbsp;&nbsp;C'est ma&nbsp;&nbsp;&nbsp;&nbsp;jolie phrase&nbsp;")</p>
+            <p class="text-success">countWords ("&nbsp;&nbsp;C'est ma&nbsp;&nbsp;&nbsp;&nbsp;jolie phrase&nbsp;")
+                affichera aussi 4.</p>
             <p><strong>Super banco !</strong> : </p>
             <p>En bon linguistique :
-                <ul>
-                    <li>il faut également ajouter comme séparateur de mots l'apostrophe ('),</li>
-                    <li>se rappeler qu'un nombre écrit en chiffres est considéré comme un mot,</li>
-                    <li>savoir ques les caractères de ponctuation (, ; : ? !) ne sont pas des mots mais en sont des séparateurs</li>
-                </ul>
+            <ul>
+                <li>il faut également ajouter comme séparateur de mots l'apostrophe ('),</li>
+                <li>se rappeler qu'un nombre écrit en chiffres est considéré comme un mot,</li>
+                <li>savoir ques les caractères de ponctuation (, ; : ? !) ne sont pas des mots mais en sont des
+                    séparateurs</li>
+            </ul>
             </p>
-            <p class="text-success">countWords ("&nbsp;&nbsp;56 ? C'&nbsp;est un&nbsp;&nbsp;&nbsp;&nbsp;joli nombre&nbsp;!&nbsp;") 
+            <p class="text-success">countWords ("&nbsp;&nbsp;56 ? C'&nbsp;est un&nbsp;&nbsp;&nbsp;&nbsp;joli
+                nombre&nbsp;!&nbsp;")
                 devra afficher 6.</p>
         </div>
 
@@ -54,20 +57,31 @@
     </div>
 
     <script type="text/javascript">
-
         function countWords() {
-            // Récupérer la phrase saisi
+            // Récupérer la phrase saisie par l'utilisateur
             const maPhrase = document.getElementById("sentence").value;
-            // Mon tableau avec les paramètres pour l'analyse
-            let myTab = [maPhrase.split(' ').length, maPhrase.replaceAll("  ", " ").split(' ').length,]
-            // Calculer le nombre de mots qu'il y a dans une phrase
-            let message = "Ma phrase contient " + myTab[0] + " mots." + "\n"
-            // Calculer le nombre de mots qu'il y a dans une phrase malgré l'espace en trop.
-            let message1 = "Ma phrase contient " + myTab[1] + " mots malgré les espaces en plus." + "\n"
-            alert(message + message1)
-        }
+            let nombreDeMots = 0;
+            // Mettre à true pour que le début de la phrase soit pris en compte
+            let separateurPrecedent = true
+            let ponctuation = ', ; : ? !'
 
+            // Parcourir chaque caractère de la phrase
+            for (let i = 0; i < maPhrase.length; i++) {
+                /*
+                 *Si le caractère actuel n'est pas un espace, et le caractère précédent était un espace,
+                 *incrémenter le compteur de mots
+                 */
+                if ((maPhrase[i] !== ' ' && maPhrase[i] !== "'") && separateurPrecedent) {
+                    nombreDeMots++;
+                }
+                // Mettre à jour la variable separateurPrecedent
+                separateurPrecedent = (maPhrase[i] === ' ' || maPhrase[i] === "'")
+            }
+
+            console.log(nombreDeMots);
+        }
     </script>
+
 </body>
 
 </html>
