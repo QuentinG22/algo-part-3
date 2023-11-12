@@ -69,21 +69,21 @@
             // Il me permet que le début de la phrase soit pris en compte
             let separateurPrecedent = true
             // il me permet de remplacer la ponctuation part null pour qu'il ne le compte pas comme un mots
-            let phraseSansPonctuation = maPhrase.replace(/[;:?! ,]/g, "");
+            let phraseSansPonctuation = maPhrase.replace(/[;:?!,]/g, "");
             // Parcourir chaque caractère de la phrase
             for (let i = 0; i < phraseSansPonctuation.length; i++) {
                 /*
                  *Si le caractère actuel n'est pas un espace, et le caractère précédent était un espace,
                  *incrémenter le compteur de mots part 1
                  */
-                if ((maPhrase[i] !== ' ' && maPhrase[i] !== "'") && separateurPrecedent) {
+                if ((phraseSansPonctuation[i] !== ' ' && phraseSansPonctuation[i] !== "'") && separateurPrecedent) {
                     nombreDeMots++;
                 }
                 // Mettre à jour la variable separateurPrecedent
-                separateurPrecedent = (maPhrase[i] === ' ' || maPhrase[i] === "'")
+                separateurPrecedent = (phraseSansPonctuation[i] === ' ' || phraseSansPonctuation[i] === "'")
             }
 
-            alert("Ma phrase contient: " + nombreDeMots + " mots !")
+            alert("La phrase contient: " + nombreDeMots + " mots !")
         }
     </script>
 
