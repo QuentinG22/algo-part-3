@@ -42,12 +42,32 @@
     const notes = [8.75, 14, 13, 5.5, 9, 17, 11.25];
 
     /*
-     * Ici le commentaire sur la fonction average...
+     * Ma fonction utilise une boucle pour pouvoir additionner toutes les valeurs de mon tableau
+     * pour ensuite déviser le résultat obtenu par le nombre de notes dans mon tableau,
+     * pour finir je mets.toFixed(2) pour arrondir mon résultat à 2 chiffre après la virgule
      */
 
     function average(noteArray) {
-        // CODE HERE !
-        
+        let resultat = 0
+        let sommes = 0
+
+        // for (let i = 0; i < notes.length; i++) {
+        //     sommes += notes[i]
+        // }
+
+        // resultat = sommes / notes.length
+
+        // alert("Voici la moyenne du tableau : " + resultat.toFixed(2))
+
+        notes.forEach(element => {
+            sommes += element
+        })
+
+        resultat = sommes / notes.length
+
+        alert("Voici la moyenne du tableau : " + resultat.toFixed(2))
+
+
     }
 
 
